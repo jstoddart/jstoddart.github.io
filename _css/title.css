@@ -1,0 +1,77 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#container {
+	width: 600px;
+	height: 600px;
+	background: #FFF;
+	margin: auto;
+	padding-left: 0px;
+	padding-right: 0px;
+	overflow: hidden;
+}
+
+#main_image {
+	width: 600px;
+	height: 600px;
+	
+}
+
+#title {
+	width: 580px;
+	height: auto;
+}
+
+#browser_info {
+	width: 580px;
+	height: auto;
+	margin-top: 10px;
+	text-align: center;
+}
+
+html {
+	background: url(../_images/portrait_bust_rb_1680px_web.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #7A7672;
+}
+
+a {
+	color: #7A7672;
+	text-decoration: none;
+	outline: none;
+	border: none;
+}
+
+a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+.label {
+	font-size: 11px;
+	font-style: italic;
+	color: #BFB9B4;
+}
+
+.links {
+	font-size: 11px;
+	font-style: normal;
+	text-decoration: none;
+	color: #7A7672;
+	
+}
+
+.centered {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -300px;
+	margin-left: -300px;
