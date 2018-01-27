@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>J S T O D D A R T</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Nunito:200');
+
+    body {
+      overflow: hidden;
+    }
+
+    #wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      top: 0;
+      left: 0;
+    }
+
+    #img-wrap {
+      position: fixed;
+      display: flex;
+      flex-wrap:wrap;
+      justify-content: space-around;
+      vertical-align: middle;
+
+      margin: 0 auto;
+      width: 600px;
+      height: 600px;
+      top: 50%;
+      left: 50%;
+      margin-top: -300px;
+      margin-left: -300px;
+      background: transparent;
+    }
+
+    .pixel {
+      flex: 0 0 5%;
+      height: 5%;
+
+      display: flex;
+      justify-content:center;
+      align-content:center;
+      flex-direction:column;
+
+    }
+
+    .feed {
+      position: absolute;
+      display: flex;
+      justify-content: space-around;
+      vertical-align: middle;
+
+      width: 600px;
+      height: 25px;
+      background: transparent;
+      bottom: 0px;
+      left: 50%;
+      margin-left: -300px;
+    }
+
+    .feed span {
+      display: block;
+      background: white;
+      opacity: 0.8;
+      color: black;
+      /* font-family: 'Nunito', sans-serif; */
+      font-family: monospace;
+      font-size: 1.25em;
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+  </style>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37854311-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="img-wrap">
+    </div>
+    <div class="feed">
+      <a href="http://bit.ly/2xBba86" target="_blank"><span id="count"></span></a>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="_js/DNA.img.js"></script>
+  <script type="text/javascript" src="_js/Population.img.js"></script>
+  <script type="text/javascript" src="_js/girl20.js"></script>
+  <script type="text/javascript">
+    var genomeLength = img.size[0] * img.size[1];
+
+    var container = document.getElementById("img-wrap");
+    for(var i = 0; i < genomeLength; i++){
+      var px = document.createElement("div");
+      px.setAttribute("class","pixel");
+      px.setAttribute("id", "[" + (i%img.size[0]) + " ," + (Math.floor(i/img.size[0])) + "]");
+
+      container.appendChild(px);
+    }
+    var pixels = document.getElementsByClassName("pixel");
+    for(var i = 0; i < img.data.length; i+=3){
+      var r = img.data[i];
+      var g = img.data[i+1];
+      var b = img.data[i+2];
+      pixels[ Math.floor(i/3) ].setAttribute("style", "background:rgb("+r+","+g+","+b+")");
+    }
+
+    var popSize=200;
+    var mutationRate=0.2;
+    var target=img.data;
+    var killGen = 1000;
+
+    setTimeout(function(){
+      var population=new Population(target, popSize, mutationRate, killGen);
+      population.generation()
+    },5000);
+  </script>
+</body>
+</html>
