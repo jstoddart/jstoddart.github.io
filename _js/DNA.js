@@ -1,0 +1,5 @@
+var DNA=function(genome){if(genome){this.genome=genome}
+this.fitness=0};DNA.prototype.genome='';DNA.prototype.spark=function(length){while(length--){this.genome+=String.fromCharCode(Math.floor(Math.random()*255))}};DNA.prototype.calcFitness=function(compare){var fit=0;for(var i=0;i<this.genome.length;i++){if(this.genome.charCodeAt(i)==compare.charCodeAt(i)){fit++}else if(this.genome.toLowerCase().charCodeAt(i)==compare.toLowerCase().charCodeAt(i)){fit+=0.5}}
+this.fitness=fit};DNA.prototype.mutate=function(rate){var newGenome='';for(var i=0;i<this.genome.length;i++){if(Math.random()>=rate){if(Math.random()>rate*0.1){newGenome+=this.genome[i]}else{var c=this.genome[i];newGenome+=c.toUpperCase()===this.genome[i]?c.toLowerCase():c.toUpperCase()}}else{newGenome+=String.fromCharCode(Math.floor(Math.random()*255))}}
+this.genome=newGenome};DNA.prototype.mate=function(partner,mut){var child='';for(var i=0;i<this.genome.length;i++){if(i<partner.genome.length){child+=(Math.random()<0.5?this.genome[i]:partner.genome[i])}else{child+=this.genome[i]}}
+child=new DNA(child);var mut_=(this.genome==partner.genome)?mut*5:mut;child.mutate(mut_);return child}
