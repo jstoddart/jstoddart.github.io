@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>J S T O D D A R T</title>
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Nunito:200);html{background:url(../_images/portrait_bust_rb_1680px_web.png) no-repeat center center fixed;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover}body{overflow:hidden}#wrapper{position:absolute;width:100%;height:100%;background-color:transparent;top:0;left:0}#logo-wrap{position:fixed;display:flex;flex-wrap:wrap;justify-content:space-around;vertical-align:middle;margin:0 auto;width:600px;height:600px;top:50%;left:50%;margin-top:-300px;margin-left:-300px;background:transparent}.char{position:relative;flex:0 0 33.33%;height:33.33%;background-color:transparent;display:flex;justify-content:center;align-content:center;flex-direction:column;transition:opacity 0.4s}.char span{color:black;font-family:'Nunito',sans-serif;font-size:180px;text-align:center}.runner{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;font-family:'Nunito',sans-serif;font-size:180px;pointer-events:none;transition:opacity 0.6s}.slant{-webkit-transform:skewX(-10deg);-o-transform:skewX(-10deg);transform:skewX(-10deg)}.backslant{-webkit-transform:skewX(10deg);-o-transform:skewX(10deg);transform:skewX(10deg)}.feed{position:absolute;display:flex;justify-content:space-around;vertical-align:middle;width:600px;height:25px;background:transparent;bottom:0;left:50%;margin-left:-300px}.feed span{display:block;background:white;opacity:.8;color:black;font-family:monospace;font-size:1.25em;text-align:center}a{text-decoration:none}
+    @import url(https://fonts.googleapis.com/css?family=Nunito:200);html{background:url(../_images/portrait_bust_rb_1680px_web.png) no-repeat center center fixed;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover}body{overflow:hidden}#wrapper{position:absolute;width:100%;height:100%;background-color:transparent;top:0;left:0}#logo-wrap{position:fixed;display:flex;flex-wrap:wrap;justify-content:space-around;vertical-align:middle;margin:0 auto;width:600px;height:600px;top:50%;left:50%;margin-top:-300px;margin-left:-300px;background:transparent}.char{position:relative;flex:0 0 33.33%;height:33.33%;background-color:transparent;display:flex;justify-content:center;align-content:center;flex-direction:column;transition:opacity 0.4s}.char span{color:black;font-family:'Nunito',sans-serif;font-size:180px;text-align:center}.runner{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;font-family:'Nunito',sans-serif;font-size:180px;pointer-events:none;transition:opacity 0.6s}.slant{-webkit-transform:skewX(-10deg);-o-transform:skewX(-10deg);transform:skewX(-10deg)}.backslant{-webkit-transform:skewX(10deg);-o-transform:skewX(10deg);transform:skewX(10deg)}.feed{position:absolute;display:flex;justify-content:space-around;vertical-align:middle;width:600px;height:25px;background:transparent;bottom:0;left:50%;margin-left:-300px}.feed span{display:block;background:white;opacity:.8;color:black;font-family:monospace;font-size:1.25em;text-align:center}a{text-decoration:none}#controls{position:fixed;bottom:32px;right:20px;display:flex;gap:6px;z-index:100}#controls span{cursor:pointer;font-family:monospace;font-size:11px;color:white;background:rgba(0,0,0,0.55);padding:5px 10px;border-radius:3px;user-select:none;letter-spacing:0.05em}#controls span:hover{background:rgba(0,0,0,0.75)}#debug-panel{position:fixed;bottom:0;left:0;width:100%;background:rgba(0,0,0,0.82);color:white;font-family:monospace;padding:14px 20px 20px;box-sizing:border-box;transform:translateY(100%);transition:transform 0.35s ease;z-index:98;backdrop-filter:blur(4px)}#debug-panel.open{transform:translateY(0)}#debug-chars{display:flex;justify-content:center;gap:6px;margin-bottom:10px}.dc{width:56px;background:rgba(255,255,255,0.06);border-radius:3px;padding:6px 4px;text-align:center}.dc-target{font-size:9px;opacity:0.35;margin-bottom:2px}.dc-best{font-size:28px;line-height:1;margin-bottom:4px}.dc-bar{height:2px;background:rgba(255,255,255,0.12);border-radius:1px;margin-bottom:4px}.dc-fill{height:100%;border-radius:1px;background:white;transition:width 0.4s}.dc-runner{font-size:16px;line-height:1;min-height:16px;margin-bottom:2px}.dc-score{font-size:9px;opacity:0.45}#debug-stats{display:flex;justify-content:center;gap:24px;font-size:10px;opacity:0.5}
   </style>
   <script type="text/javascript">
     var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-37854311-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=!0;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s)})()
@@ -27,6 +27,41 @@
       <a href="http://bit.ly/2xBba86" target="_blank"><span id="count"></span></a>
     </div>
   </div>
+  <div id="controls">
+    <span id="btn-restart">restart</span>
+    <span id="btn-mutate">mutate</span>
+    <span id="btn-internals">internals</span>
+  </div>
+  <div id="debug-panel">
+    <div id="debug-chars"></div>
+    <div id="debug-stats">
+      <span id="d-gen">—</span>
+      <span id="d-mut">—</span>
+      <span id="d-imm">—</span>
+      <span id="d-div">—</span>
+      <span id="d-stale">—</span>
+    </div>
+  </div>
+  <script>
+    document.getElementById('btn-internals').addEventListener('click',function(){document.getElementById('debug-panel').classList.toggle('open')});
+    document.getElementById('btn-restart').addEventListener('click',function(){
+      population.stopped=true;
+      document.getElementById('debug-chars').innerHTML='';
+      document.getElementById('count').innerHTML='';
+      population=new Population(target,popSize,mutationRate);
+      population.generation();
+    });
+    document.getElementById('btn-mutate').addEventListener('click',function(){
+      var g=population.getTop().split('');
+      var pos=Math.floor(Math.random()*g.length);
+      var roll=Math.random();var c=g[pos];
+      if(roll<0.33){g[pos]=c.toUpperCase()===c?c.toLowerCase():c.toUpperCase()}
+      else if(roll<0.66){var code=Math.min(126,Math.max(32,c.charCodeAt(0)+(Math.random()<0.5?1:-1)*(1+Math.floor(Math.random()*5))));g[pos]=String.fromCharCode(code)}
+      else{g[pos]=String.fromCharCode(32+Math.floor(Math.random()*95))}
+      var child=new DNA(g.join(''));child.calcFitness(population.target);
+      population.members.push(child);population.reSort();population.display();
+    });
+  </script>
   <script type="text/javascript" src="_js/DNA.js"></script>
   <script type="text/javascript" src="_js/Population.js"></script>
   <script type="text/javascript">
